@@ -8,4 +8,9 @@
         <script src="{{ global_asset('storage/resources/' . $script) }}" type="text/javascript"></script>
 	@endforeach
 @endif
+@if(!empty(config('dz.public.sweet.js')))
+	@foreach(config('dz.public.sweet.js') as $script)
+        <script src="{{ global_asset('storage/resources/' . $script) }}" type="text/javascript"></script>
+	@endforeach
+@endif
 @livewireScripts
