@@ -1,8 +1,11 @@
 <div class="table-responsive" wire:key="tenantsetupbrandsshowbrands">
-    <div wire:loading.flex class="swal2-popup swal2-modal swal2-show" style="border:solid 1px red;z-index:999">
-
-        Processing Payment...
-
+    <div wire:loading.flex class="w-100 h-100 flex "
+        style="background:rgba(255, 255, 255, 0.8);z-index:999;position:fixed;top:0;left:0;align-items: center;justify-content: center;">
+        <div class="sk-three-bounce" style="background:none;">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
     </div>
     <div id="example_wrapper" class="dataTables_wrapper">
         <div class="dataTables_length" id="example_length">
@@ -65,15 +68,15 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item"
                                     href="{{ route('tenant.setup.brands.edit', $brand->id) }}">{{ __('Edit Brand') }}</a>
-
-                                <form action="{{ route('tenant.setup.brands.destroy', $brand->id) }}" method="post"
-                                    class="ms-2">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="dropdown-item">
-                                        Delete Brand
+                                    <button class="dropdown-item btn-sweet-alert" data-type="form"
+                                        data-route="{{ route('tenant.setup.brands.destroy', $brand->id) }}"
+                                        data-style="warning" data-csrf="csrf"
+                                        data-text="{{ __('Do you want to delete this brand?') }}"
+                                        data-title="{{ __('Are you sure?') }}"
+                                        data-btn-cancel="{{ __('No, cancel it!!') }}"
+                                        data-btn-ok="{{ __('Yes, delete it!!') }}" data-method="DELETE">
+                                        {{ __('Delete Brand') }}
                                     </button>
-                                </form>
                             </div>
                         </div>
                     </td>
