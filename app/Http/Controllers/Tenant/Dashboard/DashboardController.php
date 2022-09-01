@@ -13,9 +13,7 @@ class DashboardController extends Controller
      */
     public function show()
     {
-        $action = 'dashboard_1';
-
-        return view('tenant.dashboard.index', compact('action'));
+        return view('tenant.dashboard.index', ['themeAction' => 'dashboard_1']);
     }
 
 
