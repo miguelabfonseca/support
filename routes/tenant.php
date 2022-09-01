@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -16,7 +16,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |
 | Feel free to customize them however you want. Good luck!
 |
-*/
+ */
 
 Route::middleware([
     'web',
@@ -26,4 +26,7 @@ Route::middleware([
     Route::get('/', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });
+
+    require __DIR__ . '/authTenant.php';
+
 });
