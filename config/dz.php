@@ -28,9 +28,11 @@ return [
 		'global' => [
 			'css' => [
 				'css/style.css',
+                'vendor/sweetalert2/dist/sweetalert2.min.css',
 			],
 			'js' => [
 				'vendor/global/global.min.js',
+                'vendor/sweetalert2/dist/sweetalert2.min.js',
 			],
 		],
 		'pagelevel' => [
