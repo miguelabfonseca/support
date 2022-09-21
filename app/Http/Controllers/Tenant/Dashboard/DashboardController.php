@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Tenant\Dashboard;
-
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -15,6 +14,5 @@ class DashboardController extends Controller
     {
         return view('tenant.dashboard.index', ['themeAction' => 'dashboard_1']);
     }
-
 
 }

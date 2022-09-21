@@ -13,6 +13,6 @@ class TenantLayout extends Component
      */
     public function render()
     {
-        return view('tenant.layout.default' );
+        return view('tenant.layout.default');
     }
 }
