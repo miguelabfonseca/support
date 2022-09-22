@@ -60,6 +60,8 @@ class BrandsController extends Controller
 
     public function update(Brands $brand, BrandsFormRequest $request)
     {
+        $request->file('file')->store('avatars');
+
         $brand->fill($request->all());
         $brand->save();
 
