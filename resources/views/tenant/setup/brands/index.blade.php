@@ -1,14 +1,20 @@
 <x-tenant-layout title="{{ __('List Brands') }}" :themeAction="$themeAction" :status="$status" :message="$message">
-{{-- Content --}}
+    {{-- Content --}}
     <div class="container-fluid">
-        <div class="page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">{{ __('Setup') }}</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('Device Brands') }}</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('List') }}</a></li>
-            </ol>
+        <div class="row">
+            <div class="col-9">
+                <div class="page-titles">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">{{ __('Setup') }}</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('Device Brands') }}</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('List') }}</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-3 text-right">
+                <a href="{{ route('tenant.setup.brands.create') }}" class="btn btn-primary">{{ __('Create Brand') }}</a>
+            </div>
         </div>
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -23,5 +29,3 @@
         </div>
     </div>
 </x-tenant-layout>
-
-

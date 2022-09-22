@@ -7,26 +7,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('dz.name') }} | {{ $attributes['title'] }}</title>
-
-	<meta name="description" content="@yield('page_description', $page_description ?? '')"/>
+    <meta name="description" content="@yield('page_description', $page_description ?? '')"/>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ global_asset('storage/resources/images/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 	@if(!empty(config('dz.public.pagelevel.css.'.$attributes['themeAction'])))
 		@foreach(config('dz.public.pagelevel.css.'.$attributes['themeAction']) as $style)
-				<link href="{{ global_asset('storage/resources/' . $style) }}" rel="stylesheet" type="text/css"/>
+				<link href="{{ '/assets/resources/' . $style }}" rel="stylesheet" type="text/css"/>
 		@endforeach
+
 	@endif
 	@if(!empty(config('dz.public.sweet.css')))
 		@foreach(config('dz.public.sweet.css') as $style)
-				<link href="{{ global_asset('storage/resources/' . $style) }}" rel="stylesheet" type="text/css"/>
+				<link href="{{ '/assets/resources/' . $style }}" rel="stylesheet" type="text/css"/>
 		@endforeach
 	@endif
 	{{-- Global Theme Styles (used by all pages) --}}
 	@if(!empty(config('dz.public.global.css')))
 		@foreach(config('dz.public.global.css') as $style)
-			<link href="{{ global_asset('storage/resources/' . $style) }}" rel="stylesheet" type="text/css"/>
+			<link href="{{ '/assets/resources/' . $style }}" rel="stylesheet" type="text/css"/>
 		@endforeach
 	@endif
     @livewireStyles
@@ -164,20 +164,11 @@
                     type: jQuery(this).attr('data-style'),
                     showCancelButton: !0,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it !!",
-                    cancelButtonText: "No, cancel it !!",
-                    // closeOnConfirm: !1,
-                    // closeOnCancel: !1
+                    confirmButtonText: jQuery(this).attr('data-btn-ok'),
+                    cancelButtonText: jQuery(this).attr('data-btn-cancel'),
                 }).then((e) => {
-                    // <button class="dropdown-item btn-sweet-alert" data-type="form"
-                    //     data-route=""
-                    //     data-style="warning" data-csrf="csrf"
-                    //     data-text="{{ __('Do you want to delete this brand?') }}"
-                    //     data-title="{{ __('Are you sure?') }}"
-                    //     data-btn-cancel="{{ __('No, cancel it!!') }}"
-                    //     data-btn-ok="{{ __('Yes, delete it!!') }}" data-method="DELETE">
-console.log(e);
                     if(e.value) {
+                        jQuery('ajaxLoading').show();
                         if(jQuery(this).attr('data-type') == 'form') {
                             emptyFrom = '<form action="' + jQuery(this).attr('data-route') + '" method="post" id="formAction">';
                         }
@@ -190,30 +181,6 @@ console.log(e);
                         emptyFrom += '</form>';
                         jQuery('#generatedScripts').append(emptyFrom);
                         jQuery('#formAction').submit();
-                        // jQuery('')
-                        // $.ajax({
-                        //     type: "GET",
-                        //     url: jQuery('#base_url').val() + '/carrinho/carregar_listas',
-                        //     dataType: "json",
-                        //     complete: function(res)
-                        //     {
-                        //         var data = res.responseJSON;
-                        //         console.log(data);
-                        //         if (data.status == 'ok')
-                        //         {
-                        //             jQuery('#nome_lista option').each(function() {
-                        //                 $(this).remove();
-                        //             });
-
-                        //             $("#nome_lista").append('<option value="">Selecione Lista</option>');
-                        //             $("#nome_lista").append('<option value="nova">Nova Lista</option>');
-
-                        //             for (var key in  data.listas ) {
-                        //                 $("#nome_lista").append('<option value="' + data.listas[key]['id'] + '">' + data.listas[key]['descricao'] + '</option>');
-                        //             }
-                        //         }
-                        //     }
-                        // });
                     }
                 });
             });
