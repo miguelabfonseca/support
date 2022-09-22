@@ -1,8 +1,4 @@
-{{-- Extends layout --}}
-@extends('tenant.layout.guest')
-
-{{-- Content --}}
-@section('content')
+<x-guest-layout title="{ __('Pelase login') }" :action="$action">
     <div class="col-md-6">
         <div class="authincation-content">
             <div class="row no-gutters">
@@ -55,4 +51,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-guest-layout>

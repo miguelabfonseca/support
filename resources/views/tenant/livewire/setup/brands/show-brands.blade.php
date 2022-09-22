@@ -1,5 +1,5 @@
 <div class="table-responsive" wire:key="tenantsetupbrandsshowbrands">
-    <div wire:loading.flex class="w-100 h-100 flex "
+    <div id="ajaxLoading" wire:loading.flex class="w-100 h-100 flex "
         style="background:rgba(255, 255, 255, 0.8);z-index:999;position:fixed;top:0;left:0;align-items: center;justify-content: center;">
         <div class="sk-three-bounce" style="background:none;">
             <div class="sk-child sk-bounce1"></div>
