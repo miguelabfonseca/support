@@ -9,6 +9,7 @@ use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
 use App\Http\Controllers\Tenant\Dashboard\DashboardController;
 use App\Http\Controllers\Tenant\Setup\BrandsController;
+use App\Http\Controllers\Tenant\Setup\ServicesController;
 use App\Http\Controllers\Tenant\Team\TeamController;
 //use App\Http\Controllers\Tenant\User\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
@@ -102,6 +103,10 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('brands', BrandsController::class, [
+            'as' => 'tenant.setup'
+        ]);
+        
+        Route::resource('services', ServicesController::class, [
             'as' => 'tenant.setup'
         ]);
 
