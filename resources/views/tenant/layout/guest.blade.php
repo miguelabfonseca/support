@@ -8,8 +8,8 @@
     <title>{{ config('dz.name') }} | @yield('title', $page_title ?? '')</title>
     <meta name="description" content="@yield('page_description', $page_description ?? '')"/>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ global_asset('storage/resources/images/favicon.png') }}">
-    <link href="{{ global_asset('storage/resources/css/style.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/resources/images/favicon.png' }}">
+    <link href="{{ 'assets/resources/css/style.css' }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 </head>
