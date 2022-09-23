@@ -8,6 +8,14 @@ At this time this only has only a fraction of the tenant setup working and the t
 
 This APP has a template from Envato Elements that is not registered for comercial purposes (isn't completely included in this APP).
 
+&nbsp;
+<h3>Updates</h3>
+2022.09.23<br>
+<strong>New: </strong>Route to create new tenant. %url%/createdemo/{domain}
+
+This will create a new tenant with it's own database associated with the {domain} passed as a get parameter.
+
+&nbsp;
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
