@@ -7,7 +7,7 @@
                     <div class="auth-form">
                         <div class="text-center mb-3">
                             <a href="{!! url('/index') !!}"><img
-                                    src="{{ global_asset('storage/resources/images/logo-full.png') }}" alt=""></a>
+                                    src="{{ 'assets/resources/images/logo-full.png' }}" alt=""></a>
                         </div>
                         <h4 class="text-center mb-4 text-white">Sign in your account</h4>
                         <form method="POST" action="{{ route('tenant.verify') }}">
