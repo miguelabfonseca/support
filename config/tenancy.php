@@ -128,6 +128,7 @@ return [
          */
         'suffix_storage_path' => true, /* false */
 
+
         /**
          * By default, asset() calls are made multi-tenant too. You can use global_asset() and mix()
          * for global, non-tenant-specific assets. However, you might have some issues when using
@@ -136,6 +137,7 @@ return [
          * where you want to use tenant-specific assets (product images, avatars, etc).
          */
         'asset_helper_tenancy' => false, true  /**/
+
 
     ],
 

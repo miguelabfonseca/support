@@ -46,4 +46,5 @@ Route::get('/createdemo/{domain}', function ($domain) {
 });
 
 
+
 require __DIR__.'/auth.php';
