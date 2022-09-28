@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100);
-            $table->string('image', 500)->unsigned();
+            $table->string('name',255);
+            $table->string('description', 255);
+            $table->string('type', 255);
+            $table->integer('payment')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('services');
     }
 };
