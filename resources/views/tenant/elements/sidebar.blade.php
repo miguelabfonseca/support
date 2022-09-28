@@ -70,6 +70,7 @@
                     <li><a href="{{ route('tenant.setup.parts.list') }}">{{ __('Parts') }}</a></li>
                     <li><a href="{{ route('tenant.setup.attributes.list') }}">{{ __('Attributes') }}</a></li>
                     <li><a href="{{ route('tenant.setup.attributesvalues.list') }}">{{ __('Attributes Values') }}</a></li>
+                    <li><a href="{{ route('tenant.setup.services.index') }}">{{ __('Services')}}</a></li>
                 </ul>
             </li>
         </ul>

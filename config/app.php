@@ -56,7 +56,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => 'cl', #env('ASSET_URL'),
+    'asset_url' => env('ASSET_URL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -197,6 +197,7 @@ return [
         App\Providers\TenancyServiceProvider::class,
 
         App\Providers\BrandsRepositoryProvider::class,
+        App\Providers\ServicesRepositoryProvider::class,
 
     ],
 
