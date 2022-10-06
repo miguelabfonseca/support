@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Tenant\Setup;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\Setup\Brands\BrandsFormRequest;
-use App\Models\Tenant\Brands;
 use App\Repositories\Tenant\Setup\Brands\BrandsRepository;
 use Illuminate\Http\Request;
+
+use App\Models\Tenant\Brands;
 
 class BrandsController extends Controller
 {
@@ -54,7 +55,7 @@ class BrandsController extends Controller
         ]);
 
         return to_route('tenant.setup.brands.index')
-            ->with('message', "__('Brand created with success!')")
+            ->with('message', __('Brand created with success!'))
             ->with('status', 'sucess');
     }
 

@@ -145,6 +145,17 @@
 	@include('tenant.elements.footer-scripts')
     <script>
         jQuery(document).ready(function() {
+            if ( status != '' && message != '') {
+                if( status == "sucess" ) {
+                    swal("{{ __('Success') }}", message, "success");
+                } else if ( status == "error") {
+                    swal("{{ __('Error') }}", message, "error");
+                } else if ( status == "info") {
+                    swal("{{ __('Information') }}", message, "info");
+                }
+            }
+
+
             if( "{{ $attributes['message'] }}" != "" ) {
                 if( "{{ $attributes['status'] }}" == "sucess" ) {
                     swal("{{ __('Success') }}", "{{ $attributes['message'] }}", "success");

@@ -9,6 +9,6 @@ interface BrandsRepository
 {
     public function add(BrandsFormRequest $request): Brands;
 
-    public function update(BrandsFormRequest $request): Brands;
+    //public function update(BrandsFormRequest $request): Brands;
 
 }
