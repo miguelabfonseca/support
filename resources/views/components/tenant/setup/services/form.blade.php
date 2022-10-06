@@ -35,7 +35,7 @@
                                             placeholder="{{ __('Payment') }}">
                                 </div>
                             </div>
-        
+
                         </div>
                         <div class="form-group row">
                             <div class="col-12 text-right">
@@ -50,3 +50,4 @@
         </div>
     </div>
 </div>
+
