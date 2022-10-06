@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name',255);
             $table->string('description', 255);
-            $table->string('type', 255);
-            $table->integer('payment')->unsigned();
+            $table->string('type', 255)->nullable();
+            $table->integer('payment')->nullable();
             $table->timestamps();
         });
     }
