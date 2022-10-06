@@ -19,9 +19,4 @@ class EloquentBrandsRepository implements BrandsRepository
         });
     }
 
-    public function update(BrandsFormRequest $request): Brands
-    {
-        dd($request);
-    }
-
 }
