@@ -10,4 +10,23 @@
         <!-- row -->
         <x-tenant.setup.services.form :action="route('tenant.setup.services.store')" :update="false" buttonAction="Create" formTitle="{{ __('Create Service') }}"/>
     </div>
+    <div class="erros">
+        @if ($errors->any())
+            <script>
+                let status = '';
+                let message = '';
+
+                status = 'error';
+                @php
+                    $message = '';
+                @endphp
+                @foreach ($errors->all() as $error)
+                    @php
+                        $message .= $message . '<p>' . $error . '</p>';
+                    @endphp
+                @endforeach
+                message = '{!! $message !!}';
+            </script>
+        @endif
+    </div>
 </x-tenant-layout>

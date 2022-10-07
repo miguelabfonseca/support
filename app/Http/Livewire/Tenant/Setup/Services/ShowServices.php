@@ -12,8 +12,9 @@ class ShowServices extends Component
 
     private object $services;
     public int $perPage;
+    public string $searchString = '';
 
-    public function mount()
+    public function mount(): void
     {
         if (isset($this->perPage)) {
             session()->put('perPage', $this->perPage);
@@ -24,32 +25,32 @@ class ShowServices extends Component
         }
     }
 
-    public function changePerPage($page)
+    public function updatedPerPage(): void
     {
         $this->resetPage();
-        $this->perPage = $page;
         session()->put('perPage', $this->perPage);
     }
-    /**
-     * Default pagination view
-     * @return [type]
-     */
-    public function paginationView()
+
+    public function updatedSearchString(): void
     {
-        return 'tenant.livewire.setup.services.pagination-services';
+        $this->resetPage();
     }
 
-    public function functeste()
+    public function paginationView()
     {
-        return view('tenant.livewire.setup.services.show-services', [
-            'services' => Services::paginate($this->perPage)
-        ]);
+        return 'tenant.livewire.setup.pagination';
     }
 
     public function render()
     {
-        $this->services = Services::paginate($this->perPage);
-        //$this->dispatchBrowserEvent('loading.remove');
+        if(isset($this->searchString) && $this->searchString) {
+            $this->services = Services::where('name', 'like', '%' . $this->searchString . '%')
+                ->orWhere('description', 'like', '%' . $this->searchString . '%')
+                ->orWhere('description', 'like', '%' . $this->searchString . '%')
+                ->paginate($this->perPage);
+        } else {
+            $this->services = Services::paginate($this->perPage);
+        }
         return view('tenant.livewire.setup.services.show-services', [
             'services' => $this->services
         ]);

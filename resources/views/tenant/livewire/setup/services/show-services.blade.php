@@ -7,27 +7,27 @@
             <div class="sk-child sk-bounce3"></div>
         </div>
     </div>
-    <div id="example_wrapper" class="dataTables_wrapper">
-        <div class="dataTables_length" id="example_length">
-            <label>Show
-                <select name="example_length" aria-controls="example" class="">
-                    <option value="10" wire:click="changePerPage(10)"
+    <div id="dataTables_wrapper" class="dataTables_wrapper">
+        <div class="dataTables_length" id="dataTables_length">
+            <label>{{ __('Show') }}
+                <select name="perPage" aria-controls="select" wire:model="perPage">
+                    <option value="10"
                         @if ($perPage == 10) selected @endif>10</option>
-                    <option value="25" wire:click="changePerPage(25)"
+                    <option value="25"
                         @if ($perPage == 25) selected @endif>25</option>
-                    <option value="50" wire:click="changePerPage(50)"
+                    <option value="50"
                         @if ($perPage == 50) selected @endif>50</option>
-                    <option value="100" wire:click="changePerPage(100)"
+                    <option value="100"
                         @if ($perPage == 100) selected @endif>100</option>
                 </select>
-                entries</label>
+                {{ __('entries') }}</label>
         </div>
-        <div id="example_filter" class="dataTables_filter">
-            <label>Search:
-                <input type="search" class="" placeholder="" aria-controls="example"></label>
+        <div id="dataTables_search_filter" class="dataTables_filter">
+            <label>{{ __('Search') }}:
+                <input type="search" name="searchString" wire:model="searchString"</label>
         </div>
     </div>
-    <table id="exampleq-5" class="display dataTable no-footer">
+    <table id="dataTables-data" class="display dataTable no-footer">
         <thead>
             <tr>
                 <th>
@@ -88,17 +88,5 @@
             @endforeach
         </tbody>
     </table>
-
-    @php
-        $count = 0;
-    @endphp
-    @foreach ($services as $service )
-        @php
-            $count = $count + 1;
-        @endphp
-    @endforeach
-
-    @if($count > 1)
-        {{ $services->links() }}
-    @endif
+    {{ $services->links() }}
 </div>

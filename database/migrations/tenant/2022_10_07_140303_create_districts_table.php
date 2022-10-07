@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',255);
-            $table->string('description', 255);
-            $table->string('type', 255)->nullable();
-            $table->integer('payment')->nullable();
+        Schema::create('districts', function (Blueprint $table) {
+            $table->id('2')->autoIncrement(false);
+            $table->string('name',30);
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('districts');
     }
 };
