@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
-            $table->id('2')->autoIncrement(false);
-            $table->string('name',30);
+        Schema::create('counties', function (Blueprint $table) {
+            $table->integer('id', 2)->autoIncrement(false);
+            $table->integer('district_id', 2)->autoIncrement(false);
+            $table->string('name', 40);
             $table->boolean('active')->default(0);
             $table->timestamps();
+            $table->unique(array('id', 'district_id'));
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('counties');
     }
 };
