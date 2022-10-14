@@ -25,9 +25,7 @@ class ServicesFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:2'],
-            'description' => ['required','min:2'],
-            'type' => ['required'],
-            'payment' => ['required']
+            'description' => ['required','min:2']
         ];
     }
 }
