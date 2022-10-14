@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->string('nif', 11);
-            $table->string('contact', 11);
+            $table->string('vat', 11);
+            $table->string('contact', 20);
             $table->string('email', 255);
+            $table->string('address', 255);
+            $table->string('zipcode', 8);
             $table->string('district', 2);
-            $table->string('city', 2);
-            $table->integer('zone', 11)->unsigned()->autoIncrement(false);
+            $table->string('county', 2);
+            $table->integer('zone', 11)->unsigned()->default(0)->autoIncrement(false);
             $table->timestamps();
         });
     }

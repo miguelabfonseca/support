@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Tenant\Setup\Services;
+namespace App\Http\Requests\Tenant\Customers;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServicesFormRequest extends FormRequest
+class CustomersFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,13 @@ class ServicesFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:2'],
-            'description' => ['required','min:2']
+            'vat' => ['required', 'min:9'],
+            'phone' => ['required', 'min:9'],
+            'email' => ['required', 'email'],
+            'address' => ['required', 'min:5'],
+            'zipcode' => ['required', 'min:5'],
+            'district' => ['required'],
+            'county' => ['required'],
         ];
     }
 }

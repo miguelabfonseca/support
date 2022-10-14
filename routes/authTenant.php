@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Tenant\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Tenant\Auth\NewPasswordController;
-use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
-use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
-use App\Http\Controllers\Tenant\Dashboard\DashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Tenant\Team\TeamController;
+use App\Http\Controllers\Tenant\Customers\CustomersController;
 use App\Http\Controllers\Tenant\Setup\BrandsController;
 use App\Http\Controllers\Tenant\Setup\ServicesController;
-use App\Http\Controllers\Tenant\Team\TeamController;
+use App\Http\Controllers\Tenant\Auth\NewPasswordController;
+use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
+use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
+use App\Http\Controllers\Tenant\Dashboard\DashboardController;
+use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
 //use App\Http\Controllers\Tenant\User\Auth\EmailVerificationNotificationController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Tenant\Auth\EmailVerificationPromptController;
+
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -62,79 +64,67 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'show'])
         ->name('tenant.dashboard');
 
-    Route::prefix('tasks')->group(function () {
-        Route::get('list', [TeamController::class, 'index'])
-            ->name('tenant.tasks.list');
-        Route::prefix('reports')->group(function () {
-            Route::get('list', [TeamController::class, 'index'])
-                ->name('tenant.tasks.reports.list');
-        });
-    });
+    // Route::prefix('tasks')->group(function () {
+    //     Route::get('list', [TeamController::class, 'index'])
+    //         ->name('tenant.tasks.list');
+    //     Route::prefix('reports')->group(function () {
+    //         Route::get('list', [TeamController::class, 'index'])
+    //             ->name('tenant.tasks.reports.list');
+    //     });
+    // });
 
-    Route::prefix('devices')->group(function () {
-        Route::get('list', [TeamController::class, 'index'])
-            ->name('tenant.devices.list');
-    });
+    // Route::prefix('devices')->group(function () {
+    //     Route::get('list', [TeamController::class, 'index'])
+    //         ->name('tenant.devices.list');
+    // });
 
-    Route::prefix('services')->group(function () {
-        Route::get('list', [TeamController::class, 'index'])
-            ->name('tenant.services.list');
-    });
+    // Route::prefix('services')->group(function () {
+    //     Route::get('list', [TeamController::class, 'index'])
+    //         ->name('tenant.services.list');
+    // });
 
-    Route::prefix('customers')->group(function () {
-        Route::get('list', [TeamController::class, 'index'])
-            ->name('tenant.customers.list');
-    });
 
-    Route::prefix('partners')->group(function () {
-        Route::get('list', [TeamController::class, 'index'])
-            ->name('tenant.partners.list');
-    });
+    // Route::prefix('partners')->group(function () {
+    //     Route::get('list', [TeamController::class, 'index'])
+    //         ->name('tenant.partners.list');
+    // });
 
-    Route::prefix('team')->group(function () {
-        Route::get('list', [TeamController::class, 'index'])
-            ->name('tenant.team.list');
-    });
+    // Route::prefix('team')->group(function () {
+    //     Route::get('list', [TeamController::class, 'index'])
+    //         ->name('tenant.team.list');
+    // });
+
+    Route::resource('customers', CustomersController::class, [
+        'as' => 'tenant'
+    ]);
 
     Route::prefix('setup')->group(function () {
-        Route::prefix('devices')->group(function () {
-            Route::get('list', [TeamController::class, 'index'])
-                ->name('tenant.setup.devices.list');
-        });
+        // Route::prefix('devices')->group(function () {
+        //     Route::get('list', [TeamController::class, 'index'])
+        //         ->name('tenant.setup.devices.list');
+        // });
 
         Route::resource('brands', BrandsController::class, [
             'as' => 'tenant.setup'
         ]);
-        
+
         Route::resource('services', ServicesController::class, [
             'as' => 'tenant.setup'
         ]);
 
-        // Route::prefix('brands')->group(function () {
-        //     Route::resource(name: ‘/series’, SerieController::class);
-        //     Route::get('list', [BrandsController::class, 'index'])
-        //         ->name('tenant.setup.brands.list');
-        //     Route::get('create', [BrandsController::class, 'create'])
-        //         ->name('tenant.setup.brands.create');
-        //     Route::get('{brand}/edit', [BrandsController::class, 'edit'])
-        //         ->name('tenant.setup.brands.edit');
-        //         // Route::get('{brand}/edit', [BrandsController::class, 'edit'])
-        //         // ->name('tenant.setup.brands.edit');
-        //         // tenant.setup.brands.update
 
+        // Route::prefix('parts')->group(function () {
+        //     Route::get('list', [TeamController::class, 'index'])
+        //         ->name('tenant.setup.parts.list');
         // });
-        Route::prefix('parts')->group(function () {
-            Route::get('list', [TeamController::class, 'index'])
-                ->name('tenant.setup.parts.list');
-        });
-        Route::prefix('attributes')->group(function () {
-            Route::get('list', [TeamController::class, 'index'])
-                ->name('tenant.setup.attributes.list');
-        });
-        Route::prefix('attributesvalues')->group(function () {
-            Route::get('list', [TeamController::class, 'index'])
-                ->name('tenant.setup.attributesvalues.list');
-        });
+        // Route::prefix('attributes')->group(function () {
+        //     Route::get('list', [TeamController::class, 'index'])
+        //         ->name('tenant.setup.attributes.list');
+        // });
+        // Route::prefix('attributesvalues')->group(function () {
+        //     Route::get('list', [TeamController::class, 'index'])
+        //         ->name('tenant.setup.attributesvalues.list');
+        // });
     });
 
 });

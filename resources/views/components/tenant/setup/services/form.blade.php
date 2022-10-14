@@ -17,11 +17,13 @@
                                     <label>{{ __('Service Name') }}</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         @isset($name)value="{{ $name }}"@endisset
+                                        @if(null !== old('name'))value="{{ old('name') }}"@endisset
                                         placeholder="{{ __('Service Name') }}">
 
                                         <label>{{ __('Description') }}</label>
                                         <input type="text" name="description" id="description" class="form-control"
                                             @isset($description)value="{{ $description }}"@endisset
+                                            @if(null !== old('description'))value="{{ old('description') }}"@endisset
                                             placeholder="{{ __('Description') }}">
 
                                         <label>{{ __('Type') }}</label>
