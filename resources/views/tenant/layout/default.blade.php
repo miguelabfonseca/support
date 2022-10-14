@@ -57,7 +57,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href={{ route('tenant.dashboard') }}}" class="brand-logo">
+            <a href={{ route('tenant.dashboard') }}" class="brand-logo">
 			@if(!empty($logo))
 				<img class="logo-abbr" src="{{ asset($logo) }}" alt="">
 			@else
