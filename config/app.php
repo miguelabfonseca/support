@@ -69,7 +69,7 @@ return [
     |
      */
 
-    'timezone' => 'UTC',
+    'timezone' => 'GMT',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ return [
     |
      */
 
-    'locale' => 'en',
+    'locale' => 'pt',
 
     /*
     |--------------------------------------------------------------------------
@@ -196,6 +196,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TenancyServiceProvider::class,
 
+
+        App\Providers\CustomersRepositoryProvider::class,
         App\Providers\BrandsRepositoryProvider::class,
         App\Providers\ServicesRepositoryProvider::class,
 
