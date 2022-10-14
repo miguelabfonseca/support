@@ -1,0 +1,57 @@
+{
+    "__comment1__": "tabelas",
+    "Name": "Nome",
+    "Description": "Descrição",
+    "Type": "Tipo",
+    "Payment": "Pagamento",
+    "Contact": "Contacto",
+    "Distrito": "Distrito",
+    "Action": "Ações",
+    "Show": "Mostrar",
+    "List": "Listagem",
+
+    "entries": "registos",
+    "Search": "Procurar",
+    "__comment1__": "tabelas",
+
+    "__comment2__": "menu principal",
+    "New Task": "Nova Tarefa",
+    "Dashboard": "Entrada",
+    "Manage Tasks": "Gerir Tarefas",
+    "Tasks": "Tarefas",
+    "Reports": "Relatórios",
+    "Manage Devices": "Gerir Dispositivos",
+    "Devices": "Dispositivos",
+    "Manage Services": "Gerir Serviços",
+    "Services": "Serviços",
+    "Manage Customers": "Gerir Clientes",
+    "Customers": "Clientes",
+    "Manage Partners": "Gerir Parceiros",
+    "Partners": "Parceiros",
+    "Manage Team": "Gerir Equipa",
+    "Team": "Equipa",
+    "Device Models": "Equipamentos",
+    "Device Brands": "Marcas",
+    "Parts": "Peças",
+    "Attributes": "Atributos",
+    "Attributes Values": "Valores para Atributos",
+    "All Rights Reserved": "Todos os Direitos Reservados",
+    "Setup": "Configurações",
+    "__comment2__": "menu principal",
+
+    "Search here...": "Encontre aqui...",
+    "Inbox": "Mensagens",
+    "Profile": "Perfil",
+    "Logout": "Sair",
+
+
+    "Create": "Criar",
+
+    "Edit Customer": "Editar Cliente",
+    "Delete Customer": "Eliminar Cliente",
+    "Create Customer": "Criar Cliente",
+
+    "Edit Service": "Editar Serviço",
+    "Delete Service": "Eliminar Serviço",
+    "Create Service": "Criar Serviço"
+}
