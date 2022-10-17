@@ -1,4 +1,4 @@
-<x-tenant-layout title="Nova Série" :themeAction="$themeAction">
+<x-tenant-layout title="{{ __('Create Brand') }}" :themeAction="$themeAction">
     <div class="container-fluid">
         <div class="page-titles">
             <ol class="breadcrumb">
