@@ -2,18 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Tenant\Team\TeamController;
-use App\Http\Controllers\Tenant\Customers\CustomersController;
 use App\Http\Controllers\Tenant\Setup\BrandsController;
 use App\Http\Controllers\Tenant\Setup\ServicesController;
 use App\Http\Controllers\Tenant\Auth\NewPasswordController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
+use App\Http\Controllers\Tenant\Customers\CustomersController;
 use App\Http\Controllers\Tenant\Dashboard\DashboardController;
 use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
 //use App\Http\Controllers\Tenant\User\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Tenant\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Tenant\CustomerServices\CustomerServicesController;
 
 
 Route::middleware('guest')->group(function () {
@@ -93,6 +94,10 @@ Route::middleware('auth')->group(function () {
     //     Route::get('list', [TeamController::class, 'index'])
     //         ->name('tenant.team.list');
     // });
+
+    Route::resource('services', CustomerServicesController::class, [
+        'as' => 'tenant'
+    ]);
 
     Route::resource('customers', CustomersController::class, [
         'as' => 'tenant'
