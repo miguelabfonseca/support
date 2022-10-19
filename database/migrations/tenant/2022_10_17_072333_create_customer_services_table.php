@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('customer_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id')->autoIncrement(false);
-            $table->integer('service_id')->autoIncrement(false);
-            $table->integer('location_id')->autoIncrement(false);
+            $table->bigInteger('customer_id')->autoIncrement(false);
+            $table->bigInteger('service_id')->autoIncrement(false);
+            $table->bigInteger('location_id')->autoIncrement(false);
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable(true);
             $table->string('type')->nullable(true);
             $table->timestamps();
         });
