@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
 Route::get('/createdemo/{domain}', function ($domain) {
     $tenant1 = App\Models\Tenant::create();
     $tenant1->domains()->create(['domain' => $domain, 'tenant_id' => $tenant1->id]);
-    App\Models\Tenant::all()->runForEach(function () {
+    App\Models\Tenant::all()->runForEach(function () {//erro
         App\Models\User::factory()->create();
     });
     mkdir(storage_path('tenants/' . $tenant1->id));
