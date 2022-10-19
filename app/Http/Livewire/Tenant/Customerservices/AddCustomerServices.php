@@ -4,11 +4,12 @@ namespace App\Http\Livewire\Tenant\Customerservices;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Tenant\CustomerServices;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Validator;
 
+use App\Models\Tenant\CustomerServices;
 use App\Models\Tenant\Services;
 use App\Models\Tenant\Customers;
-use Illuminate\Contracts\View\View;
 
 class AddCustomerServices extends Component
 {
@@ -24,10 +25,18 @@ class AddCustomerServices extends Component
     public string $selectedService = '';
     public $customer = '';
     public $service = '';
+    public string $start_date = '';
+    public string $end_date = '';
+    public string $type = '';
 
     public string $homePanel = 'show active';
     public string $servicesPanel = '';
     public string $profile = '';
+
+    protected array $rules = [
+        'selectedCustomer' => 'required|min:1',
+        'selectedService' => 'required|min:1',
+    ];
 
     public function mount($customerList, $serviceList): void
     {
@@ -43,21 +52,21 @@ class AddCustomerServices extends Component
         }
     }
 
-    public function updatedPerPage(): void
-    {
-        $this->resetPage();
-        session()->put('perPage', $this->perPage);
-    }
+    // public function updatedPerPage(): void
+    // {
+    //     $this->resetPage();
+    //     session()->put('perPage', $this->perPage);
+    // }
 
-    public function updatedSearchString(): void
-    {
-        $this->resetPage();
-    }
+    // public function updatedSearchString(): void
+    // {
+    //     $this->resetPage();
+    // }
 
-    public function paginationView()
-    {
-        return 'tenant.livewire.setup.pagination';
-    }
+    // public function paginationView()
+    // {
+    //     return 'tenant.livewire.setup.pagination';
+    // }
 
     public function updatedSelectedCustomer()
     {
@@ -65,7 +74,7 @@ class AddCustomerServices extends Component
         $this->homePanel = 'show active';
         $this->servicesPanel = '';
         $this->profile = '';
-        $this->dispatchBrowserEvent('contentChanged');
+        //$this->dispatchBrowserEvent('contentChanged');
     }
 
     public function updatedSelectedService()
@@ -77,14 +86,67 @@ class AddCustomerServices extends Component
         $this->dispatchBrowserEvent('contentChanged');
     }
 
-    public function save()
+    public function updatedStartDate()
     {
-        dd($_POST);
+        //$this->dispatchBrowserEvent('contentChanged2');
+    }
+
+    public function updatedEndDate()
+    {
+        //$this->dispatchBrowserEvent('contentChanged2');
+    }
+
+    public function save(CustomerServices $CustomerServices)
+    {
+        $validator = Validator::make(
+            [
+                'selectedCustomer'  => $this->selectedCustomer,
+                'selectedService' => $this->selectedService,
+            ],
+            [
+                'selectedCustomer'  => 'required|min:1',
+                'selectedService' => 'required|min:1',
+            ],
+            [
+                'selectedCustomer'  => __('You must select the customer!'),
+                'selectedService' => __('You must select the service!'),
+            ]
+        );
+
+        if ($validator->fails()) {
+            $errorMessage = '';
+            foreach($validator->errors()->all() as $message) {
+                $errorMessage .= '<p>' . $message . '</p>';
+            }
+            $this->dispatchBrowserEvent('swal', ['title' => __('Services'), 'message' => $errorMessage, 'status'=>'error']);
+        } else {
+            $start_date = '1970/01/01';
+            $end_date = '1970/01/01';
+            if($this->start_date) {
+                $start_date = $this->start_date;
+            }
+            if($this->end_date) {
+                $end_date = $this->end_date;
+            }
+            $CustomerServices->fill([
+                'customer_id' => $this->selectedCustomer,
+                'service_id' => $this->selectedService,
+                'location_id' => 0,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+                'type' => $this->type,
+                'last_date' => '1970/01/01'
+            ]);
+            $CustomerServices->save();
+            return redirect()->route('tenant.services.index')
+                ->with('message', __('Service created with success!'))
+                ->with('status', 'sucess');
+        }
+
     }
 
     public function render(): View
     {
-
         if(isset($this->searchString) && $this->searchString) {
             $this->customerServices = CustomerServices::where('name', 'like', '%' . $this->searchString . '%')
                 ->with('customer')
@@ -107,7 +169,11 @@ class AddCustomerServices extends Component
             'homePanel' => $this->homePanel,
             'servicesPanel' => $this->servicesPanel,
             'profile' => $this->profile,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'type' => $this->type,
 
         ]);
     }
+
 }

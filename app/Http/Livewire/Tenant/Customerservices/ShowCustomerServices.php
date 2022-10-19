@@ -69,6 +69,7 @@ class ShowCustomerServices extends Component
                 ->with('service')
                 ->paginate($this->perPage);
         }
+
         return view('tenant.livewire.customerservices.show', [
             'customerServices' => $this->customerServices
         ]);

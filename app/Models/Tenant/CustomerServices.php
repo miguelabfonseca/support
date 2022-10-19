@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerServices extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'vat', 'contact', 'address', 'email', 'district', 'county', 'zipcode', 'zone'];
+    protected $fillable = ['customer_id', 'service_id', 'location_id', 'start_date', 'end_date', 'type', 'last_date'];
 
     public function customer()
     {
@@ -19,13 +19,6 @@ class CustomerServices extends Model
     public function service()
     {
         return $this->belongsTo(Services::class, 'service_id', 'id');
-    }
-
-    protected static function booted()
-    {
-        self::addGlobalScope('ordered', function (Builder $queryBuilder) {
-            $queryBuilder->orderBy('name');
-        });
     }
 
 }

@@ -1,4 +1,12 @@
 <div>
+    <div id="ajaxLoading" wire:loading.flex class="w-100 h-100 flex "
+        style="background:rgba(255, 255, 255, 0.8);z-index:999;position:fixed;top:0;left:0;align-items: center;justify-content: center;">
+        <div class="sk-three-bounce" style="background:none;">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a class="nav-link {{ $homePanel }}" data-toggle="tab" href="#homePanel"><i class="la la-home mr-2"></i> {{ __('Customer') }}</a>
@@ -10,7 +18,7 @@
             <a class="nav-link {{ $profile }}" data-toggle="tab" href="#contact"><i class="la la-phone mr-2"></i> Contacts</a>
         </li> --}}
     </ul>
-    <form wire:submit.prevent="save" method="post" enctype="multipart/form-data" class="tab-content">
+    <form wire:submit.prevent="save" class="tab-content">
         @csrf
         @if ($update)
         @method('PUT')
@@ -24,7 +32,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <section class="col">
+                                            <section class="col" wire:ignore>
                                                 <label>{{ __('Customer Name') }}</label>
                                                 <select name="selectedCustomer" id="selectedCustomer"
                                                     wire:model="selectedCustomer">
@@ -80,7 +88,7 @@
                                         @endisset
                                         <div class="form-group row">
                                             <div class="col text-right">
-                                                <a href="{{ route('tenant.customers.index') }}"
+                                                <a href="{{ route('tenant.services.index') }}"
                                                     class="btn btn-secondary mr-2">{{
                                                     __('Cancel') }}</a>
                                                 <button type="submit" class="btn btn-primary">{{ $buttonAction
@@ -104,7 +112,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group row">
-                                            <section class="col">
+                                            <section class="col" wire:ignore>
                                                 <label>{{ __('Service Name') }}</label>
                                                 <select name="selectedService" id="selectedService"
                                                     wire:model="selectedService">
@@ -126,10 +134,10 @@
                                                     value="{{ $service->name }}" readonly>
                                             </section>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row" wire:ignore>
                                             <section class="col-4">
                                                 <label>{{ __('Start Date') }}</label>
-                                                <input type="text" name="start_date" id="start_date" class="form-control" class="datepicker-default" id="datepicker">
+                                                <input type="text" name="start_date" id="start_date" class="form-control" class="datepicker-default">
                                             </section>
                                             <section class="col-4">
                                                 <label>{{ __('End Date') }}</label>
@@ -143,7 +151,7 @@
                                         @endisset
                                         <div class="form-group row">
                                             <div class="col text-right">
-                                                <a href="{{ route('tenant.customers.index') }}"
+                                                <a href="{{ route('tenant.services.index') }}"
                                                     class="btn btn-secondary mr-2">{{
                                                     __('Cancel') }}</a>
                                                 <button type="submit" class="btn btn-primary">{{ $buttonAction
@@ -159,25 +167,58 @@
             </div>
         </div>
         <div class="tab-pane fade " id="contact">
-aaa
+eee
         </div>
+
     </form>
+
     @push('custom-scripts')
     <script>
         document.addEventListener('livewire:load', function () {
-            $("#selectedCustomer").select2();
-            $("#selectedService").select2();
-
+            restartObjects();
+           jQuery('#selectedCustomer').select2();
+           jQuery('#selectedService').select2();
             jQuery("#selectedCustomer").on("select2:select", function (e) { @this.selectedCustomer = jQuery('#selectedCustomer').find(':selected').val(); });
             jQuery("#selectedService").on("select2:select", function (e) { @this.selectedService = jQuery('#selectedService').find(':selected').val(); });
-        });
-        window.addEventListener('contentChanged', event => {
-            $('#selectedCustomer').select2();
-            $('#selectedService').select2();
-            jQuery('#start_date').pickadate();
-            jQuery('#end_date').pickadate();
+
+
 
         });
+
+        window.addEventListener('contentChanged', event => {
+            restartObjects();
+        });
+
+        window.addEventListener('swal',function(e){
+            swal(e.detail.title, e.detail.message, e.detail.status);
+            restartObjects();
+        });
+
+        function restartObjects()
+        {
+            jQuery('#start_date').pickadate({
+                onSet: function(thingSet) {
+                    @this.start_date = formatDate(thingSet.select);
+                }
+            });
+            jQuery('#end_date').pickadate({
+                onSet: function(thingSet) {
+                    @this.end_date = formatDate(thingSet.select);
+                }
+            });
+        }
+
+        function formatDate(unixDate)
+        {
+            var date = new Date(unixDate);
+            var year = date.getFullYear();
+            var month = "0" + (date.getMonth()+1);
+            var day = "0" + date.getDate();
+            var formattedTime = year + '/' + month.substr(-2) + '/' + day.substr(-2);
+            console.log(formattedTime);
+            return formattedTime;
+        }
+
     </script>
 </div>
 @endpush
