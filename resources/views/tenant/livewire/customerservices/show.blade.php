@@ -27,7 +27,7 @@
                         <option value="100"
                             @if ($perPage == 100) selected @endif>100</option>
                     </select>
-                    {{ __('entries') }}</label> 
+                    {{ __('entries') }}</label>
             </div>
             <div id="dataTables_search_filter" class="dataTables_filter">
                 <label>{{ __('Search') }}:
@@ -43,10 +43,10 @@
                             <label class="custom-control-label" for="checkAll"></label>
                         </div>
                     </th>
-                    <th>{{ __('NIF') }}</th>
-                    <th>{{ __('Name') }}</th>
-                    <th>{{ __('Contact') }}</th>
-                    <th>{{ __('District') }}</th>
+                    <th>{{ __('Customer') }}</th>
+                    <th>{{ __('Service') }}</th>
+                    <th>{{ __('Start Date') }}</th>
+                    <th>{{ __('Type') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -60,10 +60,10 @@
                                 <label class="custom-control-label" for="customCheckBox{{ $customer->id }}"></label>
                             </div>
                         </td>
-                        <td>{{ $customer->vat }}</td>
-                        <td>{{ $customer->name }}</td>
-                        <td>{{ $customer->contact }}</td>
-                        <td>{{ $customer->email }}</td>
+                        <td>{{ $customer->customer->name }}</td>
+                        <td>{{ $customer->service->name }}</td>
+                        <td>{{ $customer->start_date }}</td>
+                        <td>{{ $customer->type }}</td>
                         <td>
                             <div class="dropdown ml-auto text-right">
                                 <div class="btn-link" data-toggle="dropdown">
@@ -78,15 +78,15 @@
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item"
-                                        href="{{ route('tenant.customers.edit', $customer->id) }}">{{ __('Edit Customer') }}</a>
+                                        href="{{ route('tenant.services.edit', $customer->id) }}">{{ __('Edit Service') }}</a>
                                         <button class="dropdown-item btn-sweet-alert" data-type="form"
-                                            data-route="{{ route('tenant.customers.destroy', $customer->id) }}"
+                                            data-route="{{ route('tenant.services.destroy', $customer->id) }}"
                                             data-style="warning" data-csrf="csrf"
-                                            data-text="{{ __('Do you want to delete this customer?') }}"
+                                            data-text="{{ __('Do you want to delete this customer service?') }}"
                                             data-title="{{ __('Are you sure?') }}"
                                             data-btn-cancel="{{ __('No, cancel it!!') }}"
                                             data-btn-ok="{{ __('Yes, delete it!!') }}" data-method="DELETE">
-                                            {{ __('Delete Customer') }}
+                                            {{ __('Delete Service') }}
                                         </button>
                                 </div>
                             </div>

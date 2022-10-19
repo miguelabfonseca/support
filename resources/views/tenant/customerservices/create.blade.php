@@ -7,7 +7,7 @@
             </ol>
         </div>
         <div class="default-tab">
-            @livewire('tenant.customerservices.add-customer-services', ['customerList' => $customerList, 'serviceList' => $serviceList])
+            @livewire('tenant.customerlocations.add-customer-locations', ['customerList' => $customerList])
             <!--, 'customerid' => $customerid, 'serviceid' => $serviceid, 'customer' => $customer-->
         </div>
     </div>
