@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerServices extends Model
 {
     use HasFactory;
-    protected $fillable = ['customer_id', 'service_id', 'location_id', 'start_date', 'end_date', 'type', 'last_date'];
+    protected $fillable = ['customer_id', 'service_id', 'location_id', 'start_date', 'end_date', 'type'];
 
     public function customer()
     {
