@@ -8,7 +8,7 @@
             </ol>
         </div>
         <!-- row -->
-        <x-tenant.setup.customtypes.form :action="route('tenant.setup.customtypes.store')" :update="false" buttonAction="{{ __('Create') }}" formTitle="{{ __('Create Custom Type') }}"/>
+        <x-tenant.setup.customtypes.form :action="route('tenant.setup.custom-types.store')" :update="false" buttonAction="{{ __('Create') }}" formTitle="{{ __('Create Custom Type') }}"/>
     </div>
     <div class="erros">
         @if ($errors->any())
