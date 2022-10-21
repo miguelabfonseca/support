@@ -19,6 +19,7 @@ class CustomTypesController extends Controller
 
       /**
      * Display the services list.
+
      *
      * @return \Illuminate\View\View
      */
@@ -31,7 +32,6 @@ class CustomTypesController extends Controller
         ]);
     }
 
-      /**
      * Create brand.
      *
      * @return \Illuminate\View\View

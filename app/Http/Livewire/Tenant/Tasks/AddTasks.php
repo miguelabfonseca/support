@@ -12,6 +12,7 @@ use App\Models\Tenant\CustomerServices;
 use App\Models\Tenant\CustomerLocations;
 use Illuminate\Support\Facades\Validator;
 
+
 class AddTasks extends Component
 {
     use WithPagination;
@@ -24,6 +25,7 @@ class AddTasks extends Component
     public object $serviceList;
     public object $services;
     public object $locations;
+
     public string $selectedCustomer = '';
     public string $selectedService = '';
     public $customer = '';
