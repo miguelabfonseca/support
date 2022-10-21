@@ -147,6 +147,10 @@ return [
                 ],
                 'form_element' => [
                     'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
+                    'vendor/select2/css/select2.min.css',
+                    'vendor/pickadate/themes/default.css',
+                    'vendor/pickadate/themes/default.date.css',
+
                 ],
                 'form_pickers' => [
                     'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
@@ -188,10 +192,10 @@ return [
                     'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
                     'vendor/nouislider/nouislider.min.css',
                 ],
-                'uc_select2' => [
-                    'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
-                    'vendor/select2/css/select2.min.css',
-                ],
+                // 'uc_select2' => [
+                //     'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
+                //     'vendor/select2/css/select2.min.css',
+                // ],
                 'uc_sweetalert' => [
                     'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
                     'vendor/sweetalert2/dist/sweetalert2.min.css',
@@ -441,6 +445,12 @@ return [
                 ],
                 'form_element' => [
                     'vendor/bootstrap-select/dist/js/bootstrap-select.min.js',
+                    'vendor/select2/js/select2.full.min.js',
+                    'js/plugins-init/select2-init.js',
+
+                    'vendor/pickadate/picker.js',
+
+                    'vendor/pickadate/picker.date.js',
                     'js/custom.js',
                     'js/deznav-init.js',
                 ],
@@ -565,12 +575,6 @@ return [
                     'vendor/nouislider/nouislider.min.js',
                     'vendor/wnumb/wNumb.js',
                     'js/plugins-init/nouislider-init.js',
-                    'js/custom.js',
-                    'js/deznav-init.js',
-                ],
-                'uc_select2' => [
-                    'vendor/select2/js/select2.full.min.js',
-                    'js/plugins-init/select2-init.js',
                     'js/custom.js',
                     'js/deznav-init.js',
                 ],

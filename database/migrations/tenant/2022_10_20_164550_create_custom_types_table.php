@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
-            $table->id('2')->autoIncrement(false);
-            $table->string('name',30);
-            $table->boolean('active')->default(0);
+        Schema::create('custom_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('description', 255);
+            $table->string('controller', 50);
+            $table->string('field_name', 50);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('custom_types');
     }
 };

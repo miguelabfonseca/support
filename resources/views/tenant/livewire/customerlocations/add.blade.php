@@ -1,0 +1,2 @@
+<x-tenant.customerlocations.form :action="route('tenant.customer-locations.store')" :update="false"
+:customerList="$customerList" :homePanel="$homePanel" :locationPanel="$locationPanel" :selectedCustomer="$selectedCustomer" :selectedService="$selectedService" :customer="$customer" :districts="$districts" :counties="$counties" :district="$district" :county="$county" buttonAction="{{ __('Create') }}" formTitle="{{ __('Create Customer Location') }}" />

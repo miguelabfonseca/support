@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('customer_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->string('vat', 11);
-            $table->string('contact', 20);
-            $table->string('email', 255);
+            $table->string('description', 255);
+            $table->bigInteger('customer_id');
             $table->string('address', 255);
-            $table->string('zipcode', 8);
-            $table->string('district', 2);
-            $table->string('county', 2);
-            $table->bigInteger('zone', 11)->unsigned()->default(0)->autoIncrement(false);
+            $table->string('zip_code', 10);
+            $table->bigInteger('district_id');
+            $table->bigInteger('county_id');
+            $table->string('manager_name', 255);
+            $table->string('manager_contact', 20);
+            $table->string('phone', 20);
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('customer_locations');
     }
 };

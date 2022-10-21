@@ -195,8 +195,14 @@
                     }
                 });
             });
+
         })
     </script>
     <div id="generatedScripts"></div>
+
+    <!--**********************************
+        Custom Scripts
+    ***********************************-->
+    @stack('custom-scripts')
 </body>
 </html>

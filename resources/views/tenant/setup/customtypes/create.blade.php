@@ -1,14 +1,14 @@
-<x-tenant-layout title="{{ __('Create Service') }}" :themeAction="$themeAction">
+<x-tenant-layout title="{{ __('Create Custom Type') }}" :themeAction="$themeAction">
     <div class="container-fluid">
         <div class="page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">{{ __('Setup') }}</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('Services') }}</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('Custom Types') }}</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('Create') }}</a></li>
             </ol>
         </div>
         <!-- row -->
-        <x-tenant.setup.services.form :action="route('tenant.setup.services.store')" :update="false" buttonAction="Create" formTitle="{{ __('Create Service') }}"/>
+        <x-tenant.setup.customtypes.form :action="route('tenant.setup.customtypes.store')" :update="false" buttonAction="{{ __('Create') }}" formTitle="{{ __('Create Custom Type') }}"/>
     </div>
     <div class="erros">
         @if ($errors->any())

@@ -1,4 +1,4 @@
-<div class="table-responsive" wire:key="tenantcustomersshow">
+<div class="table-responsive" wire:key="tenantteammembersshow">
     <div id="ajaxLoading" wire:loading.flex class="w-100 h-100 flex "
         style="background:rgba(255, 255, 255, 0.8);z-index:999;position:fixed;top:0;left:0;align-items: center;justify-content: center;">
         <div class="sk-three-bounce" style="background:none;">
@@ -36,27 +36,27 @@
                         <label class="custom-control-label" for="checkAll"></label>
                     </div>
                 </th>
-                <th>{{ __('NIF') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Contact') }}</th>
-                <th>{{ __('District') }}</th>
+                <th>{{ __('Mobile Phone') }}</th>
+                <th>{{ __('Email') }}</th>
+                <th>{{ __('Job') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($customers as $customer)
+            @foreach ($teamMembers as $item)
                 <tr>
                     <td>
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheckBox{{ $customer->id }}"
+                            <input type="checkbox" class="custom-control-input" id="customCheckBox{{ $item->id }}"
                                 required="">
-                            <label class="custom-control-label" for="customCheckBox{{ $customer->id }}"></label>
+                            <label class="custom-control-label" for="customCheckBox{{ $item->id }}"></label>
                         </div>
                     </td>
-                    <td>{{ $customer->vat }}</td>
-                    <td>{{ $customer->name }}</td>
-                    <td>{{ $customer->contact }}</td>
-                    <td>{{ $customer->email }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->mobile_phone }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->job }}</td>
                     <td>
                         <div class="dropdown ml-auto text-right">
                             <div class="btn-link" data-toggle="dropdown">
@@ -71,15 +71,15 @@
                             </div>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item"
-                                    href="{{ route('tenant.customers.edit', $customer->id) }}">{{ __('Edit Customer') }}</a>
+                                    href="{{ route('tenant.team-member.edit', $item->id) }}">{{ __('Edit Team Member') }}</a>
                                     <button class="dropdown-item btn-sweet-alert" data-type="form"
-                                        data-route="{{ route('tenant.customers.destroy', $customer->id) }}"
+                                        data-route="{{ route('tenant.team-member.destroy', $item->id) }}"
                                         data-style="warning" data-csrf="csrf"
-                                        data-text="{{ __('Do you want to delete this customer?') }}"
+                                        data-text="{{ __('Do you want to delete this team member?') }}"
                                         data-title="{{ __('Are you sure?') }}"
                                         data-btn-cancel="{{ __('No, cancel it!!') }}"
                                         data-btn-ok="{{ __('Yes, delete it!!') }}" data-method="DELETE">
-                                        {{ __('Delete Customer') }}
+                                        {{ __('Delete Team Member') }}
                                     </button>
                             </div>
                         </div>
@@ -88,5 +88,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $customers->links() }}
+    {{ $teamMembers->links() }}
 </div>
