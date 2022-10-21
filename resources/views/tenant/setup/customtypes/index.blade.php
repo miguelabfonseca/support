@@ -22,7 +22,7 @@
                         <h4 class="card-title">{{ __('Brands') }}</h4>
                     </div>
                     <div class="card-body">
-                        @livewire('tenant.setup.brands.show-brands')
+                        @livewire('tenant.setup.customtypes.show-customtypes')
                     </div>
                 </div>
             </div>

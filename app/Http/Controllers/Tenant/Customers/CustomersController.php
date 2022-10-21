@@ -13,10 +13,12 @@ use App\Http\Requests\Tenant\Customers\CustomersFormRequest;
 class CustomersController extends Controller
 {
 
-    // public function __construct(private BrandsRepository $repository)
-    // {
+    private CustomersRepository $customersRepository;
 
-    // }
+    public function __construct(CustomersRepository $customersRepository)
+    {
+        $this->customersRepository = $customersRepository;
+    }
     /**
      * Display the customers list.
      *
@@ -60,39 +62,40 @@ class CustomersController extends Controller
         return view('tenant.customers.edit', compact('customer', 'themeAction', 'districts', 'counties'));
     }
 
-    public function store(Customers $customers, CustomersFormRequest $request)
+    public function store(Customers $customer, CustomersFormRequest $request)
     {
-        $customers = Customers::create([
-            'name' => $request->name,
-            'vat' => $request->vat,
-            'contact' => $request->phone,
-            'email' => $request->email,
-            'address' => $request->address,
-            'district' => $request->district,
-            'county' => $request->county,
-            'zipcode' => $request->zipcode,
-        ]);
+        $this->customersRepository->add($request);
+        // $customer = Customers::create([
+        //     'name' => $request->name,
+        //     'vat' => $request->vat,
+        //     'contact' => $request->contact,
+        //     'email' => $request->email,
+        //     'address' => $request->address,
+        //     'district' => $request->district,
+        //     'county' => $request->county,
+        //     'zipcode' => $request->zipcode,
+        // ]);
 
         return to_route('tenant.customers.index')
             ->with('message', __('Customer created with success!'))
             ->with('status', 'sucess');
     }
 
-    public function update(Customers $customers, CustomersFormRequest $request)
+    public function update(Customers $customer, CustomersFormRequest $request)
     {
-        $customers->fill($request->all());
-        $customers->save();
+        $customer->fill($request->all());
+        $customer->save();
 
         return to_route('tenant.customers.index')
             ->with('message', __('Customer updated with success!'))
             ->with('status', 'sucess');
     }
 
-    public function destroy(Customers $brand)
+    public function destroy(Customers $customer)
     {
-        $brand->delete();
+        $customer->delete();
         return to_route('tenant.customers.index')
-            ->with('message', __('Brand deleted with success!'))
+            ->with('message', __('Customer deleted with success!'))
             ->with('status', 'sucess');
     }
 

@@ -15,11 +15,11 @@
                     <span class="nav-text">{{ __('Manage Tasks') }}</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">{{ __('Tasks') }}</a></li>
+                    <li><a href="{{ route('tenant.tasks.index') }}">{{ __('Tasks') }}</a></li>
                     <li><a href="#">{{ __('Reports') }}</a></li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li class="d-none"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-network"></i>
                     <span class="nav-text">{{ __('Manage Devices') }}</span>
                 </a>
@@ -32,7 +32,7 @@
                     <span class="nav-text">{{ __('Manage Services') }}</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">{{ __('Services') }}</a></li>
+                    <li><a href="{{ route('tenant.services.index') }}">{{ __('Services') }}</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -41,9 +41,10 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('tenant.customers.index') }}">{{ __('Customers') }}</a></li> <!-- a corrigir */ -->
+                    <li><a href="{{ route('tenant.customer-locations.index') }}">{{ __('Customer Locations') }}</a></li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li class="d-none"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking-1"></i>
                     <span class="nav-text">{{ __('Manage Partners') }}</span>
                 </a>
@@ -56,7 +57,7 @@
                     <span class="nav-text">{{ __('Manage Team') }}</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">{{ __('Team') }}</a></li>
+                    <li><a href="{{ route('tenant.team-member.index') }}">{{ __('Team') }}</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -64,11 +65,12 @@
                     <span class="nav-text">{{ __('Setup') }}</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">{{ __('Device Models') }}</a></li>
+                    <li class="d-none"><a href="#">{{ __('Device Models') }}</a></li>
                     <li><a href="{{ route('tenant.setup.brands.index') }}">{{ __('Device Brands') }}</a></li>
-                    <li><a href="#">{{ __('Parts') }}</a></li>
-                    <li><a href="#">{{ __('Attributes') }}</a></li>
-                    <li><a href="#">{{ __('Attributes Values') }}</a></li>
+                    <li><a href="{{ route('tenant.setup.custom-types.index') }}">{{ __('Custom types') }}</a></li>
+                    <li class="d-none"><a href="#">{{ __('Parts') }}</a></li>
+                    <li class="d-none"><a href="#">{{ __('Attributes') }}</a></li>
+                    <li class="d-none"><a href="#">{{ __('Attributes Values') }}</a></li>
                     <li><a href="{{ route('tenant.setup.services.index') }}">{{ __('Services')}}</a></li>
                 </ul>
             </li>

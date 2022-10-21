@@ -17,4 +17,14 @@ class Services extends Model
             $queryBuilder->orderBy('name');
         });
     }
+
+    public function serviceType()
+    {
+        return $this->belongsTo(CustomTypes::class, 'type', 'id');
+    }
+
+    public function paymentType()
+    {
+        return $this->belongsTo(CustomTypes::class, 'payment', 'id');
+    }
 }

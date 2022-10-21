@@ -1,4 +1,4 @@
-<div class="table-responsive" wire:key="tenantsetupservicesshowservices">
+<div class="table-responsive" wire:key="tenantsetupcustomtypesservices">
     <div id="ajaxLoading" wire:loading.flex class="w-100 h-100 flex "
         style="background:rgba(255, 255, 255, 0.8);z-index:999;position:fixed;top:0;left:0;align-items: center;justify-content: center;">
         <div class="sk-three-bounce" style="background:none;">
@@ -36,27 +36,25 @@
                         <label class="custom-control-label" for="checkAll"></label>
                     </div>
                 </th>
-                <th>{{ __('Name') }}</th>
                 <th>{{ __('Description') }}</th>
-                <th>{{ __('Type') }}</th>
-                <th>{{ __('Payment') }}</th>
+                <th>{{ __('Controller') }}</th>
+                <th>{{ __('field_name') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($services as $service)
+            @foreach ($customtypes as $item)
                 <tr>
                     <td>
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheckBox{{ $service->id }}"
+                            <input type="checkbox" class="custom-control-input" id="customCheckBox{{ $item->id }}"
                                 required="">
-                            <label class="custom-control-label" for="customCheckBox{{ $service->id }}"></label>
+                            <label class="custom-control-label" for="customCheckBox{{ $item->id }}"></label>
                         </div>
                     </td>
-                    <td>{{ $service->name }}</td>
-                    <td>{{ $service->description }}</td>
-                    <td>{{ $service->serviceType->description }}</td>
-                    <td>{{ $service->paymentType->description }}</td>
+                    <td>{{ $item->description }}</td>
+                    <td>{{ $item->controller }}</td>
+                    <td>{{ $item->field_name }}</td>
                     <td>
                         <div class="dropdown ml-auto text-right">
                             <div class="btn-link" data-toggle="dropdown">
@@ -71,15 +69,15 @@
                             </div>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item"
-                                    href="{{ route('tenant.setup.services.edit', $service->id) }}">{{ __('Edit Service') }}</a>
+                                    href="{{ route('tenant.setup.custom-types.edit', $item->id) }}">{{ __('Edit Custom Type') }}</a>
                                     <button class="dropdown-item btn-sweet-alert" data-type="form"
-                                        data-route="{{ route('tenant.setup.services.destroy', $service->id) }}"
+                                        data-route="{{ route('tenant.setup.custom-types.destroy', $item->id) }}"
                                         data-style="warning" data-csrf="csrf"
-                                        data-text="{{ __('Do you want to delete this service?') }}"
+                                        data-text="{{ __('Do you want to delete this Custom Type?') }}"
                                         data-title="{{ __('Are you sure?') }}"
                                         data-btn-cancel="{{ __('No, cancel it!!') }}"
                                         data-btn-ok="{{ __('Yes, delete it!!') }}" data-method="DELETE">
-                                        {{ __('Delete Service') }}
+                                        {{ __('Delete Custom Type') }}
                                     </button>
                             </div>
                         </div>
@@ -88,5 +86,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $services->links() }}
+    {{ $customtypes->links() }}
 </div>

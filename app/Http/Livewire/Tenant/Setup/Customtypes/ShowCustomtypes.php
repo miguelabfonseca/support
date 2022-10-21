@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Tenant\Setup\Services;
+namespace App\Http\Livewire\Tenant\Setup\Customtypes;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Tenant\Services;
+use App\Models\Tenant\Customtypes;
 
-class ShowServices extends Component
+class ShowCustomtypes extends Component
 {
     use WithPagination;
 
-    private object $services;
+    private object $customtypes;
     public int $perPage;
     public string $searchString = '';
 
@@ -49,10 +49,10 @@ class ShowServices extends Component
                 ->orWhere('description', 'like', '%' . $this->searchString . '%')
                 ->paginate($this->perPage);
         } else {
-            $this->services = Services::with('serviceType')->with('paymentType')->paginate($this->perPage);
+            $this->customtypes = customtypes::paginate($this->perPage);
         }
-        return view('tenant.livewire.setup.services.show-services', [
-            'services' => $this->services
+        return view('tenant.livewire.setup.customtypes.show-customtypes', [
+            'customtypes' => $this->customtypes
         ]);
     }
 }

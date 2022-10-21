@@ -7,6 +7,6 @@
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ __('Edit') }}</a></li>
             </ol>
         </div>
-        <x-tenant.setup.services.form :action="route('tenant.setup.services.update', $service->id)" :name="$service->name" :description="$service->description" :type="$service->type" :payment="$service->payment" :update="true" buttonAction="Update service" formTitle="{{ __('Update Service') }}"/>
+        <x-tenant.setup.services.form :action="route('tenant.setup.services.update', $service->id)" :typeList="$typeList" :paymentList="$paymentList" :name="$service->name" :description="$service->description" :type="$service->type" :payment="$service->payment" :update="true" buttonAction="Update service" formTitle="{{ __('Update Service') }}"/>
     </div>
 </x-tenant-layout>

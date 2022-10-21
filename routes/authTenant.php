@@ -7,11 +7,12 @@ use App\Http\Controllers\Tenant\Setup\BrandsController;
 use App\Http\Controllers\Tenant\Setup\ServicesController;
 use App\Http\Controllers\Tenant\Auth\NewPasswordController;
 use App\Http\Controllers\Tenant\Auth\VerifyEmailController;
+use App\Http\Controllers\Tenant\Setup\CustomTypesController;
 use App\Http\Controllers\Tenant\Auth\RegisteredUserController;
 use App\Http\Controllers\Tenant\Customers\CustomersController;
 use App\Http\Controllers\Tenant\Dashboard\DashboardController;
-use App\Http\Controllers\Tenant\TeamMember\TeamMemberController;
 //use App\Http\Controllers\Tenant\User\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Tenant\TeamMember\TeamMemberController;
 use App\Http\Controllers\Tenant\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Tenant\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Tenant\Auth\AuthenticatedSessionController;
@@ -131,6 +132,10 @@ Route::middleware('auth')->group(function () {
         ]);
 
         Route::resource('services', ServicesController::class, [
+            'as' => 'tenant.setup'
+        ]);
+
+        Route::resource('custom-types', CustomTypesController::class, [
             'as' => 'tenant.setup'
         ]);
 

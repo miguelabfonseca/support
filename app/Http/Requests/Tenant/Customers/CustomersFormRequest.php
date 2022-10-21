@@ -26,7 +26,7 @@ class CustomersFormRequest extends FormRequest
         return [
             'name' => ['required', 'min:2'],
             'vat' => ['required', 'min:9'],
-            'phone' => ['required', 'min:9'],
+            'contact' => ['required', 'min:9'],
             'email' => ['required', 'email'],
             'address' => ['required', 'min:5'],
             'zipcode' => ['required', 'min:5'],

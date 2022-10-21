@@ -21,7 +21,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="home" role="tabpanel">
                     <div class="pt-4">
-                        <x-tenant.customers.form :action="route('tenant.customers.update', $customer->id)" :districts="$districts" :counties="$counties" :name="$customer->name" :vat="$customer->vat" :email="$customer->email" :phone="$customer->contact" :address="$customer->address" :zipcode="$customer->zipcode" :district="$customer->district" :county="$customer->county" :update="true" buttonAction="{{ __('Update Customer') }}" formTitle="{{ __('Update Customer') }}"/>
+                        <x-tenant.customers.form :action="route('tenant.customers.update', $customer->id)" :districts="$districts" :counties="$counties" :name="$customer->name" :vat="$customer->vat" :email="$customer->email" :contact="$customer->contact" :address="$customer->address" :zipcode="$customer->zipcode" :district="$customer->district" :county="$customer->county" :update="true" buttonAction="{{ __('Update Customer') }}" formTitle="{{ __('Update Customer') }}"/>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile">

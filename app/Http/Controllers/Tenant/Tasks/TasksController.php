@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Tenant\Tasks;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Tenant\Customers\CustomersFormRequest;
 use App\Models\Counties;
 use App\Models\Districts;
-use App\Models\Tenant\Customers;
-use App\Models\Tenant\Services;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Services;
+use App\Models\Tenant\Customers;
+use App\Http\Controllers\Controller;
+use App\Models\Tenant\CustomerServices;
+use App\Http\Requests\Tenant\Customers\CustomersFormRequest;
 
 class TasksController extends Controller
 {
@@ -41,7 +42,7 @@ class TasksController extends Controller
         return view('tenant.tasks.create', [
             'themeAction' => 'form_element',
             'customerList' => Customers::all(),
-            'serviceList' => Services::all(),
+            'serviceList' => CustomerServices::where('customer_id', 0)->with('service')->get(),
             'selectedCustomer' => '',
             'selectedService' => '',
             'customer' => '',

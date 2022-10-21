@@ -24,9 +24,9 @@ class CustomTypesFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => ['required', 'min:2'],
-            'use_in' => ['controller', 'min:2'],
-            'use_in' => ['field_name', 'min:2'],
+            'description' => ['required','min:2'],
+            'controller' => ['required','min:2'],
+            'field_name' => ['required','min:2'],
         ];
     }
 }

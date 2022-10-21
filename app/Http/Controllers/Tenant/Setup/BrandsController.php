@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\Setup\Brands\BrandsFormRequest;
 use App\Repositories\Tenant\Setup\Brands\BrandsRepository;
 use Illuminate\Http\Request;
-
 use App\Models\Tenant\Brands;
 
 class BrandsController extends Controller
@@ -61,7 +60,7 @@ class BrandsController extends Controller
 
     public function update(Brands $brand, BrandsFormRequest $request)
     {
-        $request->file('file')->store('avatars');
+        #$request->file('file')->store(storage_path() . '/setup/brands');
 
         $brand->fill($request->all());
         $brand->save();
@@ -78,7 +77,5 @@ class BrandsController extends Controller
             ->with('message', __('Brand deleted with success!'))
             ->with('status', 'sucess');
     }
-
-
 
 }

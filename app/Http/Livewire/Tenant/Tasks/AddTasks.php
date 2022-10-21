@@ -4,12 +4,14 @@ namespace App\Http\Livewire\Tenant\Tasks;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Validator;
-
-use App\Models\Tenant\CustomerServices;
 use App\Models\Tenant\Services;
 use App\Models\Tenant\Customers;
+
+use Illuminate\Contracts\View\View;
+use App\Models\Tenant\CustomerServices;
+use App\Models\Tenant\CustomerLocations;
+use Illuminate\Support\Facades\Validator;
+
 
 class AddTasks extends Component
 {
@@ -21,6 +23,9 @@ class AddTasks extends Component
 
     public object $customerList;
     public object $serviceList;
+    public object $services;
+    public object $locations;
+
     public string $selectedCustomer = '';
     public string $selectedService = '';
     public $customer = '';
@@ -33,6 +38,8 @@ class AddTasks extends Component
     public string $servicesPanel = '';
     public string $profile = '';
 
+    public int $selectedLocation = 0;
+
     protected array $rules = [
         'selectedCustomer' => 'required|min:1',
         'selectedService' => 'required|min:1',
@@ -42,6 +49,7 @@ class AddTasks extends Component
     {
         $this->customerList = $customerList;
         $this->serviceList = $serviceList;
+        $this->locations = CustomerLocations::get();
 
         if (isset($this->perPage)) {
             session()->put('perPage', $this->perPage);
@@ -74,7 +82,9 @@ class AddTasks extends Component
         $this->homePanel = 'show active';
         $this->servicesPanel = '';
         $this->profile = '';
-        //$this->dispatchBrowserEvent('contentChanged');
+        $this->serviceList = CustomerServices::where('customer_id', $this->selectedCustomer)->with('service')->get();
+        $this->locations = CustomerLocations::where('customer_id', $this->selectedCustomer)->get();
+        $this->dispatchBrowserEvent('contentChanged');
     }
 
     public function updatedSelectedService()
@@ -172,6 +182,7 @@ class AddTasks extends Component
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'type' => $this->type,
+            'locations' => $this->locations,
 
         ]);
     }

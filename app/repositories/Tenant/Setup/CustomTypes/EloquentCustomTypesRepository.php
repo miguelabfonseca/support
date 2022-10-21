@@ -11,12 +11,14 @@ class EloquentCustomTypesRepository implements CustomTypesRepository
     public function add(CustomTypesFormRequest $request): CustomTypes
     {
         return DB::transaction(function () use ($request) {
-            $brand = CustomTypes::create([
+            $customTypes = CustomTypes::create([
+                'name' => $request->name,
                 'description' => $request->description,
-                'controller' => $request->controller,
-                'field_name' => $request->field_name,
+                'type' => $request->type,
+                'payment' => $request->payment
             ]);
-            return $brand;
+            return $customTypes;
         });
     }
+
 }
