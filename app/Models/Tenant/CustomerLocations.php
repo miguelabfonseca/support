@@ -9,12 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerLocations extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description','type','payment'];
+    protected $fillable = ['description','customer_id','address','zipcode','district_id','county_id','manager_name','manager_contact','contact'];
 
-    // protected static function booted()
-    // {
-    //     self::addGlobalScope('ordered', function (Builder $queryBuilder) {
-    //         $queryBuilder->orderBy('name');
-    //     });
-    // }
 }
