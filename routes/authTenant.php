@@ -21,6 +21,7 @@ use App\Http\Controllers\Tenant\CustomerServices\CustomerServicesController;
 use App\Http\Controllers\Tenant\CustomerLocations\CustomerLocationsController;
 
 
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -106,6 +107,7 @@ Route::middleware('auth')->group(function () {
         'as' => 'tenant'
     ]);
 
+
     Route::resource('customers', CustomersController::class, [
         'as' => 'tenant'
     ]);
@@ -117,6 +119,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('customer-locations', CustomerLocationsController::class, [
         'as' => 'tenant'
     ]);
+
 
     Route::prefix('setup')->group(function () {
         // Route::prefix('devices')->group(function () {
