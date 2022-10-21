@@ -32,9 +32,9 @@
                                 <div class="form-group row">
                                     <section class="col-3">
                                         <label>{{ __('Phone number') }}</label>
-                                        <input type="text" name="phone" id="phone" class="form-control"
-                                            @isset($phone)value="{{ $phone }}" @endisset
-                                            @if(null !== old('phone'))value="{{ old('phone') }}"@endisset
+                                        <input type="text" name="contact" id="contact" class="form-control"
+                                            @isset($contact)value="{{ $contact }}" @endisset
+                                            @if(null !== old('contact'))value="{{ old('contact') }}"@endisset
                                             placeholder="{{ __('Phone number') }}">
                                     </section>
                                     <section class="col-9">

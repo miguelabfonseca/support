@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Tenant\CustomerServices;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Tenant\Customers\CustomersFormRequest;
 use App\Models\Counties;
 use App\Models\Districts;
-use App\Models\Tenant\Customers;
-use App\Models\Tenant\Services;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Services;
+use App\Models\Tenant\Customers;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Tenant\CustomerServices;
+use App\Http\Requests\Tenant\Customers\CustomersFormRequest;
 
 class CustomerServicesController extends Controller
 {
@@ -36,7 +39,7 @@ class CustomerServicesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         return view('tenant.customerservices.create', [
             'themeAction' => 'form_element',
@@ -48,8 +51,9 @@ class CustomerServicesController extends Controller
         ]);
     }
 
-    public function edit(Customers $customer)
+    public function edit(CustomerServices $service): View
     {
+        $customer = Customers::where('id', $service->customer_id)->first();
         $districts = tenancy()->central(function () {
             return Districts::all();
         });
@@ -57,10 +61,10 @@ class CustomerServicesController extends Controller
             return Counties::where('district_id', $customer->district)->get();
         });
         $themeAction = 'form_element';
-        return view('tenant.customers.edit', compact('customer', 'themeAction', 'districts', 'counties'));
+        return view('tenant.customers.edit', compact('service', 'customer', 'themeAction', 'districts', 'counties'));
     }
 
-    public function store(Customers $customers, CustomersFormRequest $request)
+    public function store(Customers $customers, CustomersFormRequest $request): RedirectResponse
     {
         $customers = Customers::create([
             'name' => $request->name,
@@ -78,7 +82,7 @@ class CustomerServicesController extends Controller
             ->with('status', 'sucess');
     }
 
-    public function update(Customers $customers, CustomersFormRequest $request)
+    public function update(Customers $customers, CustomersFormRequest $request): RedirectResponse
     {
         $customers->fill($request->all());
         $customers->save();
@@ -88,7 +92,7 @@ class CustomerServicesController extends Controller
             ->with('status', 'sucess');
     }
 
-    public function destroy(Customers $brand)
+    public function destroy(Customers $brand): RedirectResponse
     {
         $brand->delete();
         return to_route('tenant.customers.index')
