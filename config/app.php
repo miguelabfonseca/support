@@ -200,6 +200,7 @@ return [
         App\Providers\CustomersRepositoryProvider::class,
         App\Providers\BrandsRepositoryProvider::class,
         App\Providers\ServicesRepositoryProvider::class,
+        App\Providers\CustomTypesRepositoryProvider::class,
 
     ],
 
