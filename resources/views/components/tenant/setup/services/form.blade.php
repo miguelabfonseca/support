@@ -12,7 +12,7 @@
                             @method('PUT')
                         @endif
                         <div class="row">
-                            <div class="col-8 mb-3">
+                            <div class="col">
                                 <div class="form-group row">
                                     <label>{{ __('Service Name') }}</label>
                                     <input type="text" name="name" id="name" class="form-control"
@@ -27,19 +27,26 @@
                                             placeholder="{{ __('Description') }}">
 
                                         <label>{{ __('Type') }}</label>
-                                        <input type="text" name="type" id="type" class="form-control"
-                                            @isset($type)value="{{ $type }}"@endisset
-                                            placeholder="{{ __('Type') }}">
-
+                                        <select name="type" id="type" class="form-control">
+                                            <option value="">{{ __('Select type') }}</option>
+                                            @forelse ($typeList as $item)
+                                                <option value="{{ $item->id }}" @if(isset($type) && $type == $item->id) selected @endif>{{ $item->description }}</option>
+                                            @empty
+                                            @endforelse
+                                        </select>
                                         <label>{{ __('Payment') }}</label>
-                                        <input type="text" name="payment" id="payment" class="form-control"
-                                            @isset($payment)value="{{ $payment }}"@endisset
-                                            placeholder="{{ __('Payment') }}">
+                                        <select name="payment" id="payment" class="form-control">
+                                            <option value="">{{ __('Select payment type') }}</option>
+                                            @forelse ($paymentList as $item)
+                                                <option value="{{ $item->id }}" @if(isset($payment) && $payment == $item->id) selected @endif>{{ $item->description }}</option>
+                                            @empty
+                                            @endforelse
+                                        </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-12 text-right">
+                            <div class="col text-right">
                                 <a href="{{ route('tenant.setup.services.index') }}"
                                     class="btn btn-secondary mr-2">{{ __('Cancel') }}</a>
                                 <button type="submit" class="btn btn-primary">{{ $buttonAction }}</button>

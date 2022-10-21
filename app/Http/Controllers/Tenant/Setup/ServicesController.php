@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Tenant\Setup;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\Setup\Services\ServicesFormRequest;
-use App\Models\Tenant\Services;
+use App\Models\Tenant\CustomTypes;
 use App\Repositories\Tenant\Setup\Services\ServicesRepository;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Services;
 
 class ServicesController extends Controller
 {
     public function __construct(private ServicesRepository $repository)
     {
-        
+
     }
 
       /**
@@ -36,19 +37,31 @@ class ServicesController extends Controller
      */
     public function create(Request $request)
     {
+        $typeList = CustomTypes::where('controller','setup.services')
+            ->where('field_name', 'type')
+            ->get();
+        $paymentList = CustomTypes::where('controller','setup.services')
+            ->where('field_name', 'payment')
+            ->get();
         $themeAction = 'form_element';
-        return view('tenant.setup.services.create', compact('themeAction'));
+        return view('tenant.setup.services.create', compact('themeAction', 'typeList', 'paymentList'));
     }
 
     public function edit(Services $service)
     {
+        $typeList = CustomTypes::where('controller','setup.services')
+            ->where('field_name', 'type')
+            ->get();
+        $paymentList = CustomTypes::where('controller','setup.services')
+            ->where('field_name', 'payment')
+            ->get();
         $themeAction = 'form_element';
-        return view('tenant.setup.services.edit', compact('service', 'themeAction'));
+        return view('tenant.setup.services.edit', compact('service', 'themeAction', 'typeList', 'paymentList'));
     }
 
     public function store(Services $services, ServicesFormRequest $request)
     {
-        
+
         $service = Services::create([
             'name' => $request->name,
             'description' => $request->description,

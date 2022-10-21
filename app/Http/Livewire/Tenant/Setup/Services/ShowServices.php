@@ -49,7 +49,7 @@ class ShowServices extends Component
                 ->orWhere('description', 'like', '%' . $this->searchString . '%')
                 ->paginate($this->perPage);
         } else {
-            $this->services = Services::paginate($this->perPage);
+            $this->services = Services::with('serviceType')->with('paymentType')->paginate($this->perPage);
         }
         return view('tenant.livewire.setup.services.show-services', [
             'services' => $this->services

@@ -24,7 +24,7 @@
         </div>
         <div id="dataTables_search_filter" class="dataTables_filter">
             <label>{{ __('Search') }}:
-                <input type="search" name="searchString" wire:model="searchString"</label>
+                <input type="search" name="searchString" wire:model="searchString"></label>
         </div>
     </div>
     <table id="dataTables-data" class="display dataTable no-footer">
@@ -55,8 +55,8 @@
                     </td>
                     <td>{{ $service->name }}</td>
                     <td>{{ $service->description }}</td>
-                    <td>{{ $service->type }}</td>
-                    <td>{{ $service->payment }}</td>
+                    <td>{{ $service->serviceType->description }}</td>
+                    <td>{{ $service->paymentType->description }}</td>
                     <td>
                         <div class="dropdown ml-auto text-right">
                             <div class="btn-link" data-toggle="dropdown">
